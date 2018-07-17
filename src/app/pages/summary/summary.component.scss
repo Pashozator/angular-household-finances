@@ -1,16 +1,24 @@
+@import '../../../styles/breakpoints';
+
 h1 {
 	margin: 0 0 25px 0;
 	font-weight: 300;
 }
 
+section {
+	width: 100%;
+	justify-content: space-between;
+	flex-direction: row;
+	display: flex;
+}
+
 mat-card {
 	margin: 0 0 25px 0;
-	width: 45%;
+	width: 48%;
 }
 
 .chart {
 	height: 410px;
-	float: left;
 
 	chart {
 		height: 300px;
@@ -18,6 +26,15 @@ mat-card {
 }
 
 app-goal {
-	width: 45%;
-	float: right;
+	width: 48%;
+}
+
+@media screen and (max-width: $desktop-breakpoint) {
+	section {
+		flex-direction: column-reverse;
+	}
+
+	mat-card, app-goal {
+		width: 100%;
+	}
 }
