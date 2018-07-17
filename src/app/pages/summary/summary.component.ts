@@ -110,24 +110,26 @@ export class SummaryComponent implements OnInit {
 	}
 
 	public openDialogAddIncome(): void {
-		let incomeModal = this.dialog.open(AddIncomeDialogComponent, {
+		this.dialog.open(AddIncomeDialogComponent, {
 			height: '300px',
 			width: '500px'
-		});
-		incomeModal.afterClosed().subscribe(result => {
-			this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
-			this.chartComp.chart.update();
-		});
+		})
+			.afterClosed()
+			.subscribe(result => {
+				this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
+				this.chartComp.chart.update();
+			});
 	}
 
 	public openDialogAddOutgo(): void {
-		let outgoModal = this.dialog.open(AddOutgoDialogComponent, {
+		this.dialog.open(AddOutgoDialogComponent, {
 			height: '300px',
 			width: '500px'
-		});
-		outgoModal.afterClosed().subscribe(() => {
-			this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
-			this.chartComp.chart.update();
-		});
+		})
+			.afterClosed()
+			.subscribe(() => {
+				this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
+				this.chartComp.chart.update();
+			});
 	}
 }
