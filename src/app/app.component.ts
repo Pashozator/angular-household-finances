@@ -19,9 +19,6 @@ export class AppComponent {
 	}
 
 	public openDialogAuthor(): void {
-		this.dialog.open(AuthorDialogComponent, {
-			height: '300px',
-			width: '500px'
-		});
+		this.dialog.open(AuthorDialogComponent);
 	}
 }
