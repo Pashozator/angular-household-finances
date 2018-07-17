@@ -1,0 +1,14 @@
+table {
+	tbody tr {
+		&:last-child {
+			border-top: 2px solid #cecece;
+		}
+	}
+
+	td, th {
+		max-width: 200px;
+		min-width: 100px;
+		text-align: center;
+		word-wrap: break-word;
+	}
+}

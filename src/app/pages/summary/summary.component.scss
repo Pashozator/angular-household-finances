@@ -1,0 +1,23 @@
+h1 {
+	margin: 0 0 25px 0;
+	font-weight: 300;
+}
+
+mat-card {
+	margin: 0 0 25px 0;
+	width: 45%;
+}
+
+.chart {
+	height: 410px;
+	float: left;
+
+	chart {
+		height: 300px;
+	}
+}
+
+app-goal {
+	width: 45%;
+	float: right;
+}

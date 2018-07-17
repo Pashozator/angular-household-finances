@@ -1,0 +1,15 @@
+<h3 mat-dialog-title>Dodaj wydatek</h3>
+
+<mat-dialog-content>
+	<mat-form-field>
+		<input [(ngModel)]="outgo" matInput type="number" required minlength="1" placeholder="Wpisz kwote wydatku w zł" value="" tabindex="2">
+	</mat-form-field>
+	<mat-select placeholder="Wybierz miesiąc" [(ngModel)]="month" tabindex="1">
+		<mat-option *ngFor="let month of months" [value]="month.number">{{ month.name }}</mat-option>
+	</mat-select>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+	<button mat-raised-button tabindex="-1" (click)="closeModal()">Anuluj</button>
+	<button mat-raised-button color="primary" tabindex="-1" (click)="addOutgo()">Dodaj</button>
+</mat-dialog-actions>

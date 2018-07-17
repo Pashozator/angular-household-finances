@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@import '~normalize.css/normalize.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+a {
+	color: #fff!important;
+	text-decoration: none!important;
+
+	&:hover {
+		color: #fff!important;
+		text-decoration: none!important;
+	}
+}
+
+.wrapper {
+	margin: 0 auto 0 auto;
+	width: 95%;
+}

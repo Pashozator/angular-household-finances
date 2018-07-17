@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { AuthorDialogComponent } from './shared/components/dialogs/author-dialog/author-dialog.component';
 
 @Component({
 	selector: 'app-root',
@@ -6,5 +8,20 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	title = 'app';
+	public title: string;
+	public year: number;
+
+	constructor(
+		public dialog: MatDialog
+	) {
+		this.title = 'Domowe finanse';
+		this.year = 2018;
+	}
+
+	public openDialogAuthor(): void {
+		this.dialog.open(AuthorDialogComponent, {
+			height: '300px',
+			width: '500px'
+		});
+	}
 }

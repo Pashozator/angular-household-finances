@@ -1,0 +1,43 @@
+<div class="wrapper">
+	<table class="table table-bordered table-responsive">
+		<thead class="thead-default">
+		<tr>
+			<th></th>
+			<th>Styczeń</th>
+			<th>Luty</th>
+			<th>Marzec</th>
+			<th>Kwiecień</th>
+			<th>Maj</th>
+			<th>Czerwiec</th>
+			<th>Lipiec</th>
+			<th>Sierpień</th>
+			<th>Wrzesień</th>
+			<th>Październik</th>
+			<th>Listopad</th>
+			<th>Grudzień</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th scope="row">Przychód</th>
+			<td *ngFor="let income of incomes; let i = index; trackBy: trackByFn">
+				{{ income | currencyPln }}
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">Wydatki</th>
+			<td *ngFor="let outgo of outgos; let i = index; trackBy: trackByFn">
+				{{ outgo | currencyPln }}
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">Zaoszczędzono</th>
+			<td *ngFor="let saving of savings; let i = index; trackBy: trackByFn">
+				{{ saving | currencyPln }}
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<button mat-raised-button color="primary" (click)="openDialogAddIncome()">Dodaj przychód</button>
+	<button mat-raised-button color="warn" (click)="openDialogAddOutgo()">Dodaj wydatek</button>
+</div>

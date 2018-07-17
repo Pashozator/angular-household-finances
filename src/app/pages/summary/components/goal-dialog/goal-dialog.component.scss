@@ -1,0 +1,20 @@
+mat-dialog-content {
+	margin: 0 auto 0 auto;
+	padding: 0;
+	width: 100%;
+
+	mat-form-field {
+		margin: 0 0 15px 0;
+		width: 100%;
+	}
+}
+
+mat-dialog-actions {
+	float: right;
+
+	button {
+		&:first-child {
+			margin: 0 15px 0 0;
+		}
+	}
+}
