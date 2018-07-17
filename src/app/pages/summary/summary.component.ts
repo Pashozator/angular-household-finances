@@ -14,6 +14,7 @@ import { ChartComponent } from 'angular2-chartjs';
 export class SummaryComponent implements OnInit {
 	@ViewChild('yearChart') chartComp: ChartComponent;
 	@ViewChild('goal') goalComp: GoalComponent;
+	public year: number;
 	public lineChartData = {
 		labels: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
 		datasets: [
@@ -90,6 +91,7 @@ export class SummaryComponent implements OnInit {
 		private flowdata: FlowdataService,
 		public dialog: MatDialog
 	) {
+		this.year = new Date().getFullYear();
 	}
 
 	ngOnInit() {

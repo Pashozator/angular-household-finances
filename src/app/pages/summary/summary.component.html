@@ -1,11 +1,13 @@
 <div class="wrapper">
-	<h1>W 2017 zaoszczędziłeś już {{ getSavePerYear() | currencyPln }}</h1>
-	<mat-card class="chart">
-		<chart #yearChart [type]="lineChartType" [data]="lineChartData" [options]="lineChartOptions"></chart>
-		<br/>
-		<button mat-raised-button color="primary" (click)="openDialogAddIncome()">Dodaj przychód</button>
-		<button mat-raised-button color="warn" (click)="openDialogAddOutgo()">Dodaj wydatek</button>
-	</mat-card>
+	<h1>W {{ year }} zaoszczędziłeś już {{ getSavePerYear() | currencyPln }}</h1>
+	<section>
+		<mat-card class="chart">
+			<chart #yearChart [type]="lineChartType" [data]="lineChartData" [options]="lineChartOptions"></chart>
+			<br/>
+			<button mat-raised-button color="primary" (click)="openDialogAddIncome()">Dodaj przychód</button>
+			<button mat-raised-button color="warn" (click)="openDialogAddOutgo()">Dodaj wydatek</button>
+		</mat-card>
 
-	<app-goal #goal (onRealizeGoal)="onRealizeGoal($event)"></app-goal>
+		<app-goal #goal (onRealizeGoal)="onRealizeGoal($event)"></app-goal>
+	</section>
 </div>

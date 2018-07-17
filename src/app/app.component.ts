@@ -15,7 +15,7 @@ export class AppComponent {
 		public dialog: MatDialog
 	) {
 		this.title = 'Domowe finanse';
-		this.year = 2018;
+		this.year = new Date().getFullYear();
 	}
 
 	public openDialogAuthor(): void {
