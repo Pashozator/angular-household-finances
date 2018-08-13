@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FlowdataService } from '../../core/services/flowdata.service';
+import { FlowdataService } from '../../modules/core/services/flowdata.service';
 import { MatDialog } from '@angular/material';
-import { AddIncomeDialogComponent } from '../../shared/components/dialogs/add-income-dialog/add-income-dialog.component';
-import { AddOutgoDialogComponent } from '../../shared/components/dialogs/add-outgo-dialog/add-outgo-dialog.component';
+import { AddIncomeDialogComponent } from '../../modules/shared/components/dialogs/add-income-dialog/add-income-dialog.component';
+import { AddOutgoDialogComponent } from '../../modules/shared/components/dialogs/add-outgo-dialog/add-outgo-dialog.component';
 
 @Component({
 	selector: 'app-history',

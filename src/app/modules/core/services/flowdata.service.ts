@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Year } from '../models/year';
+import { Year } from '../../../types/year';
 
 @Injectable()
 export class FlowdataService {

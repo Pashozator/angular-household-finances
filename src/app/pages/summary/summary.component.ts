@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GoalComponent } from './components/goal/goal.component';
-import { FlowdataService } from '../../core/services/flowdata.service';
+import { FlowdataService } from '../../modules/core/services/flowdata.service';
 import { MatDialog } from '@angular/material';
-import { AddIncomeDialogComponent } from '../../shared/components/dialogs/add-income-dialog/add-income-dialog.component';
-import { AddOutgoDialogComponent } from '../../shared/components/dialogs/add-outgo-dialog/add-outgo-dialog.component';
+import { AddIncomeDialogComponent } from '../../modules/shared/components/dialogs/add-income-dialog/add-income-dialog.component';
+import { AddOutgoDialogComponent } from '../../modules/shared/components/dialogs/add-outgo-dialog/add-outgo-dialog.component';
 import { ChartComponent } from 'angular2-chartjs';
 
 @Component({

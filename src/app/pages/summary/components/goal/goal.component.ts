@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Goal } from '../../../../core/models/goal';
-import { FlowdataService } from '../../../../core/services/flowdata.service';
-import { GoalService } from '../../../../core/services/goal.service';
+import { Goal } from '../../../../types/goal';
+import { FlowdataService } from '../../../../modules/core/services/flowdata.service';
+import { GoalService } from '../../../../modules/core/services/goal.service';
 import { MatDialog } from '@angular/material';
 import { GoalDialogComponent } from '../goal-dialog/goal-dialog.component';
 

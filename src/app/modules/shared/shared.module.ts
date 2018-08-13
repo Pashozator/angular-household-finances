@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CurrencyPlnPipe } from './pipes/currency-pln.pipe';
 import { AuthorDialogComponent } from './components/dialogs/author-dialog/author-dialog.component';
-import { MaterialModule } from '../modules/material/material.module';
+import { MaterialModule } from '../material/material.module';
 import { AddIncomeDialogComponent } from './components/dialogs/add-income-dialog/add-income-dialog.component';
 import { AddOutgoDialogComponent } from './components/dialogs/add-outgo-dialog/add-outgo-dialog.component';
 import { FormsModule } from '@angular/forms';

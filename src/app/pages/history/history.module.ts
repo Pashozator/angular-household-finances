@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HistoryComponent } from './history.component';
-import { CoreModule } from '../../core/core.module';
-import { SharedModule } from '../../shared/shared.module';
+import { CoreModule } from '../../modules/core/core.module';
+import { SharedModule } from '../../modules/shared/shared.module';
 import { HistoryRoutingModule } from './history-routing/history-routing.module';
 import { MaterialModule } from '../../modules/material/material.module';
 
