@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { reducers } from './store/reducers/app.reducer';
 import { effects } from './store/effects/app.effects';
+import { DialogsModule } from './modules/dialogs/dialogs.module';
 
 @NgModule({
 	declarations: [
@@ -18,6 +19,7 @@ import { effects } from './store/effects/app.effects';
 		BrowserModule,
 		BrowserAnimationsModule,
 		SharedModule,
+		DialogsModule,
 		AppRoutingModule,
 		StoreModule.forRoot(reducers),
 		EffectsModule.forRoot(effects),

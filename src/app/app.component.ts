@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { AuthorDialogComponent } from './modules/dialogs/components/author-dialog/author-dialog.component';
 
 @Component({
 	selector: 'app-root',
@@ -10,13 +11,12 @@ export class AppComponent {
 	public title: string;
 	public year: number;
 
-	constructor(
-		public dialog: MatDialog
-	) {
+	constructor(public dialog: MatDialog) {
 		this.title = 'Domowe finanse';
 		this.year = new Date().getFullYear();
 	}
 
 	public openDialogAuthor(): void {
+		this.dialog.open(AuthorDialogComponent);
 	}
 }
