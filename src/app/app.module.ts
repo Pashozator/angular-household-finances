@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CoreModule } from './modules/core/core.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -18,7 +17,6 @@ import { effects } from './store/effects/app.effects';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		CoreModule.forRoot(),
 		SharedModule,
 		AppRoutingModule,
 		StoreModule.forRoot(reducers),

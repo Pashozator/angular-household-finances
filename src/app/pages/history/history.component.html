@@ -3,37 +3,28 @@
 		<thead class="thead-default">
 		<tr>
 			<th></th>
-			<th>Styczeń</th>
-			<th>Luty</th>
-			<th>Marzec</th>
-			<th>Kwiecień</th>
-			<th>Maj</th>
-			<th>Czerwiec</th>
-			<th>Lipiec</th>
-			<th>Sierpień</th>
-			<th>Wrzesień</th>
-			<th>Październik</th>
-			<th>Listopad</th>
-			<th>Grudzień</th>
+			<th *ngFor="let month of (year$ | async).months">
+				{{ month.label }}
+			</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
 			<th scope="row">Przychód</th>
-			<td *ngFor="let income of incomes; let i = index; trackBy: trackByFn">
-				{{ income | currencyPln }}
+			<td *ngFor="let month of (year$ | async).months">
+				{{ month.income | currencyPln }}
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">Wydatki</th>
-			<td *ngFor="let outgo of outgos; let i = index; trackBy: trackByFn">
-				{{ outgo | currencyPln }}
+			<td *ngFor="let month of (year$ | async).months">
+				{{ month.outgo | currencyPln }}
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">Zaoszczędzono</th>
-			<td *ngFor="let saving of savings; let i = index; trackBy: trackByFn">
-				{{ saving | currencyPln }}
+			<td *ngFor="let month of (year$ | async).months">
+				{{ month.savings | currencyPln }}
 			</td>
 		</tr>
 		</tbody>

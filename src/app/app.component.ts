@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { AuthorDialogComponent } from './modules/shared/components/dialogs/author-dialog/author-dialog.component';
 
 @Component({
 	selector: 'app-root',
@@ -19,6 +18,5 @@ export class AppComponent {
 	}
 
 	public openDialogAuthor(): void {
-		this.dialog.open(AuthorDialogComponent);
 	}
 }

@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GoalComponent } from './components/goal/goal.component';
-import { FlowdataService } from '../../modules/core/services/flowdata.service';
 import { MatDialog } from '@angular/material';
-import { AddIncomeDialogComponent } from '../../modules/shared/components/dialogs/add-income-dialog/add-income-dialog.component';
-import { AddOutgoDialogComponent } from '../../modules/shared/components/dialogs/add-outgo-dialog/add-outgo-dialog.component';
 import { ChartComponent } from 'angular2-chartjs';
 
 @Component({
@@ -20,7 +17,7 @@ export class SummaryComponent implements OnInit {
 		datasets: [
 			{
 				label: "2017",
-				data: this.flowdata.getSavePerMonth(),
+				data: [],
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',
@@ -88,48 +85,25 @@ export class SummaryComponent implements OnInit {
 	};
 
 	constructor(
-		private flowdata: FlowdataService,
 		public dialog: MatDialog
 	) {
 		this.year = new Date().getFullYear();
 	}
 
 	ngOnInit() {
-		this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
+		// this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
 	}
 
 	public onRealizeGoal(realizeGoal: boolean) {
-		if (realizeGoal) {
-			this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
-			this.chartComp.chart.update();
-		}
 	}
 
 	public getSavePerYear(): number {
-		return this.flowdata.getSavePerYear();
+		return 0;
 	}
 
 	public openDialogAddIncome(): void {
-		this.dialog.open(AddIncomeDialogComponent, {
-			height: '300px',
-			width: '500px'
-		})
-			.afterClosed()
-			.subscribe(result => {
-				this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
-				this.chartComp.chart.update();
-			});
 	}
 
 	public openDialogAddOutgo(): void {
-		this.dialog.open(AddOutgoDialogComponent, {
-			height: '300px',
-			width: '500px'
-		})
-			.afterClosed()
-			.subscribe(() => {
-				this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
-				this.chartComp.chart.update();
-			});
 	}
 }

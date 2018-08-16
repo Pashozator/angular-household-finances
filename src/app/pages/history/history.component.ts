@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FlowdataService } from '../../modules/core/services/flowdata.service';
 import { MatDialog } from '@angular/material';
-import { AddIncomeDialogComponent } from '../../modules/shared/components/dialogs/add-income-dialog/add-income-dialog.component';
-import { AddOutgoDialogComponent } from '../../modules/shared/components/dialogs/add-outgo-dialog/add-outgo-dialog.component';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../store/state/app.state';
+import { selectBudget } from '../../store/selectors/app.selectors';
+import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Year } from '../../types/year';
 
 @Component({
 	selector: 'app-history',
@@ -10,43 +13,24 @@ import { AddOutgoDialogComponent } from '../../modules/shared/components/dialogs
 	styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
-	public incomes: number[];
-	public outgos: number[];
-	public savings: number[];
+	public year$: Observable<Year>;
 
 	constructor(
-		private flowdata: FlowdataService,
+		private store: Store<AppState>,
 		private dialog: MatDialog
 	) {
-		this.incomes = flowdata.getIncomePerMonth();
-		this.outgos = flowdata.getOutgoPerMonth();
-		this.savings = flowdata.getSavePerMonth();
 	}
 
 	ngOnInit() {
+		this.year$ = this.store.pipe(
+			select(selectBudget),
+			map(budget => budget.years.filter(year => year.label === '2018')[0])
+		);
 	}
 
 	public openDialogAddIncome(): void {
-		this.dialog.open(AddIncomeDialogComponent, {
-			height: '300px',
-			width: '500px'
-		})
-			.afterClosed()
-			.subscribe(() => {
-				this.incomes = this.flowdata.getIncomePerMonth();
-				this.savings = this.flowdata.getSavePerMonth();
-			});
 	}
 
 	public openDialogAddOutgo(): void {
-		this.dialog.open(AddOutgoDialogComponent, {
-			height: '300px',
-			width: '500px'
-		})
-			.afterClosed()
-			.subscribe(() => {
-				this.outgos = this.flowdata.getOutgoPerMonth();
-				this.savings = this.flowdata.getSavePerMonth();
-			});
 	}
 }

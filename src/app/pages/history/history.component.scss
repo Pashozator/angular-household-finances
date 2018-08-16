@@ -1,4 +1,9 @@
+@import '../../../styles/colors';
+
 table {
+	margin: 0 0 25px 0;
+	border-collapse: collapse;
+
 	tbody tr {
 		&:last-child {
 			border-top: 2px solid #cecece;
@@ -6,10 +11,12 @@ table {
 	}
 
 	td, th {
+		padding: 15px;
 		max-width: 200px;
 		min-width: 100px;
 		text-align: center;
 		word-wrap: break-word;
+		border: 1px solid $grey;
 	}
 }
 
