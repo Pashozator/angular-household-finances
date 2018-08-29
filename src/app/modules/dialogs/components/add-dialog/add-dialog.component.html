@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+	<mat-dialog-content>
+		<mat-form-field>
+			<input type="number" matInput min="0" placeholder="Kwota" formControlName="amount">
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Rok" formControlName="year">
+				<mat-option *ngFor="let year of (budget$ | async).years" [value]="year.id">{{ year.label }}</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Miesiąc" formControlName="month">
+				<mat-option [value]="1">Styczeń</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</mat-dialog-content>
+
+	<mat-dialog-actions>
+		<button type="button" mat-button [mat-dialog-close]="false">Anuluj</button>
+		<button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">
+			Zapisz
+		</button>
+	</mat-dialog-actions>
+</form>

@@ -3,8 +3,7 @@ export class Month {
 		public id: number = 0,
 		public label: string = '',
 		public income: number = 0,
-		public outgo: number = 0,
-		public savings: number = 0
+		public outgo: number = 0
 	) {
 	}
 }

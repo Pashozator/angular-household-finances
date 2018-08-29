@@ -2,20 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthorDialogComponent } from './components/author-dialog/author-dialog.component';
 import { MaterialModule } from '../material/material.module';
+import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	imports: [
 		CommonModule,
-		MaterialModule
+		MaterialModule,
+		ReactiveFormsModule
 	],
 	declarations: [
-		AuthorDialogComponent
+		AuthorDialogComponent,
+		AddDialogComponent
 	],
 	entryComponents: [
-		AuthorDialogComponent
+		AuthorDialogComponent,
+		AddDialogComponent
 	],
 	exports: [
-		AuthorDialogComponent
+		AuthorDialogComponent,
+		AddDialogComponent
 	]
 })
 export class DialogsModule {

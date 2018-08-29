@@ -24,7 +24,7 @@
 		<tr>
 			<th scope="row">Zaoszczędzono</th>
 			<td *ngFor="let month of (year$ | async).months">
-				{{ month.savings | currencyPln }}
+				{{ (month.income - month.outgo) | currencyPln }}
 			</td>
 		</tr>
 		</tbody>
