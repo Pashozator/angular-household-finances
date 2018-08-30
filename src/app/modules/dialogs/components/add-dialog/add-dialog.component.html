@@ -11,8 +11,10 @@
 			</mat-select>
 		</mat-form-field>
 		<mat-form-field>
-			<mat-select placeholder="Miesiąc" formControlName="month">
-				<mat-option [value]="1">Styczeń</mat-option>
+			<mat-select placeholder="Miesiąc" formControlName="month" [disabled]="!form.get('year').value">
+				<mat-option *ngFor="let month of getMonths((budget$ | async).years)" [value]="month.id">
+					{{ month.label }}
+				</mat-option>
 			</mat-select>
 		</mat-form-field>
 	</mat-dialog-content>

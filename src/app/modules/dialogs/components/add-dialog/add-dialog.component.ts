@@ -6,6 +6,8 @@ import { Budget } from '../../../../types/budget';
 import { Observable } from 'rxjs';
 import { selectBudget } from '../../../../store/selectors/app.selectors';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Month } from '../../../../types/month';
+import { Year } from '../../../../types/year';
 
 @Component({
 	selector: 'app-add-dialog',
@@ -27,6 +29,16 @@ export class AddDialogComponent implements OnInit {
 	}
 
 	ngOnInit() {
+	}
+
+	public getMonths(years: Year[]): Month[] {
+		const currentYear = this.form.get('year').value;
+
+		if (!currentYear) {
+			return [];
+		}
+
+		return years.find(_year => _year.id === currentYear).months;
 	}
 
 	public submit(): void {
