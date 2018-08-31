@@ -2,9 +2,6 @@
 	<h1>W {{ year }} zaoszczędziłeś już {{ getSavePerYear() | currencyPln }}</h1>
 	<section>
 		<mat-card class="chart">
-			<chart #yearChart [type]="summaryChart.type" [data]="summaryChart.data"
-				   [options]="summaryChart.options"></chart>
-			<br/>
 			<button mat-raised-button color="primary" (click)="openDialogAddIncome()">Dodaj przychód</button>
 			<button mat-raised-button color="warn" (click)="openDialogAddOutgo()">Dodaj wydatek</button>
 		</mat-card>

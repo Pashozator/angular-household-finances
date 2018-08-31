@@ -1,29 +1,39 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { GoalComponent } from './components/goal/goal.component';
 import { MatDialog } from '@angular/material';
 import { ChartComponent } from 'angular2-chartjs';
-import { SUMMARY_CHART } from '../../modules/shared/charts/summary-chart';
+import { AddDialogComponent } from '../../modules/dialogs/components/add-dialog/add-dialog.component';
+import { AddIncomeAction, AddOutgoAction } from '../../store/actions/budget.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/state/app.state';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-summary',
 	templateUrl: './summary.component.html',
 	styleUrls: ['./summary.component.scss']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent implements OnInit, OnDestroy {
 	@ViewChild('yearChart') chartComp: ChartComponent;
 	@ViewChild('goal') goalComp: GoalComponent;
-	public summaryChart: any;
 	public year: number;
+	private subscriptions: Subscription[];
 
 	constructor(
-		public dialog: MatDialog
+		public dialog: MatDialog,
+		private store: Store<AppState>
 	) {
 		this.year = new Date().getFullYear();
-		this.summaryChart = SUMMARY_CHART;
+		this.subscriptions = [];
 	}
 
 	ngOnInit() {
-		// this.lineChartData.datasets[0].data = this.flowdata.getSavePerMonth();
+	}
+
+	ngOnDestroy() {
+		for (const subscription of this.subscriptions) {
+			subscription.unsubscribe();
+		}
 	}
 
 	public onRealizeGoal(realizeGoal: boolean) {
@@ -34,8 +44,28 @@ export class SummaryComponent implements OnInit {
 	}
 
 	public openDialogAddIncome(): void {
+		this.dialog.open(AddDialogComponent, {
+			data: 'Dodaj przychód'
+		})
+			.afterClosed()
+			.toPromise()
+			.then(result => this.store.dispatch(new AddIncomeAction({
+				yearId: result.year,
+				monthId: result.month,
+				amount: result.amount
+			})));
 	}
 
 	public openDialogAddOutgo(): void {
+		this.dialog.open(AddDialogComponent, {
+			data: 'Dodaj wydatek'
+		})
+			.afterClosed()
+			.toPromise()
+			.then(result => this.store.dispatch(new AddOutgoAction({
+				yearId: result.year,
+				monthId: result.month,
+				amount: result.amount
+			})));
 	}
 }
