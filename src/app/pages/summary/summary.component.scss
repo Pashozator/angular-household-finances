@@ -14,31 +14,15 @@ section {
 
 mat-card {
 	margin: 0 0 25px 0;
-	width: 48%;
 }
 
-.chart {
-	height: 410px;
-
-	chart {
-		height: 300px;
-	}
-
-	button {
-		margin: 0 10px 0 0;
-	}
+button {
+	margin: 0 10px 0 0;
 }
 
-app-goal {
-	width: 48%;
-}
 
 @media screen and (max-width: $desktop-breakpoint) {
-	section {
-		flex-direction: column-reverse;
-	}
-
-	mat-card, app-goal {
+	mat-card {
 		width: 100%;
 	}
 }

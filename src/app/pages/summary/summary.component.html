@@ -1,11 +1,13 @@
 <div class="wrapper">
 	<h1>W {{ year }} zaoszczędziłeś już {{ getSavePerYear() | currencyPln }}</h1>
 	<section>
-		<mat-card class="chart">
-			<button mat-raised-button color="primary" (click)="openDialogAddIncome()">Dodaj przychód</button>
-			<button mat-raised-button color="warn" (click)="openDialogAddOutgo()">Dodaj wydatek</button>
+		<mat-card>
+			<mat-card-content>
+				<ngx-charts-bar-vertical [legend]="true" legendTitle="Oszczędności" [results]="data" [xAxis]="true"
+										 [yAxis]="true" xAxisLabel="Miesiące" [showXAxisLabel]="true"
+										 yAxisLabel="Oszczędności" [showYAxisLabel]="true" [showGridLines]="true"
+										 [yAxisTickFormatting]="yAxisTickFormatting"></ngx-charts-bar-vertical>
+			</mat-card-content>
 		</mat-card>
-
-		<!--<app-goal #goal (onRealizeGoal)="onRealizeGoal($event)"></app-goal>-->
 	</section>
 </div>

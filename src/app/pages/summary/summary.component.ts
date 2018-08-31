@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { GoalComponent } from './components/goal/goal.component';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { ChartComponent } from 'angular2-chartjs';
 import { AddDialogComponent } from '../../modules/dialogs/components/add-dialog/add-dialog.component';
 import { AddIncomeAction, AddOutgoAction } from '../../store/actions/budget.actions';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppState } from '../../store/state/app.state';
 import { Subscription } from 'rxjs';
+import { selectBudget } from '../../store/selectors/app.selectors';
+import { map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-summary',
@@ -14,9 +14,8 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./summary.component.scss']
 })
 export class SummaryComponent implements OnInit, OnDestroy {
-	@ViewChild('yearChart') chartComp: ChartComponent;
-	@ViewChild('goal') goalComp: GoalComponent;
 	public year: number;
+	public data: any[];
 	private subscriptions: Subscription[];
 
 	constructor(
@@ -25,6 +24,22 @@ export class SummaryComponent implements OnInit, OnDestroy {
 	) {
 		this.year = new Date().getFullYear();
 		this.subscriptions = [];
+		this.data = [];
+		const budgetSubscription = this.store.pipe(
+			select(selectBudget),
+			map(budget => budget.years.filter(year => year.label === '2018')[0])
+		)
+			.subscribe(year => {
+				const data = [];
+
+				for (const month of year.months) {
+					data.push({ name: month.label, value: month.income - month.outgo });
+				}
+
+				this.data = data;
+			});
+
+		this.subscriptions.push(budgetSubscription);
 	}
 
 	ngOnInit() {
@@ -34,6 +49,10 @@ export class SummaryComponent implements OnInit, OnDestroy {
 		for (const subscription of this.subscriptions) {
 			subscription.unsubscribe();
 		}
+	}
+
+	public yAxisTickFormatting(value: string): string {
+		return `${value} zł`;
 	}
 
 	public onRealizeGoal(realizeGoal: boolean) {

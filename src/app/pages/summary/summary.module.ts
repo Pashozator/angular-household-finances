@@ -5,9 +5,9 @@ import { SharedModule } from '../../modules/shared/shared.module';
 import { SummaryRoutingModule } from './summary-routing/summary-routing.module';
 import { GoalComponent } from './components/goal/goal.component';
 import { GoalDialogComponent } from './components/goal-dialog/goal-dialog.component';
-import { ChartModule } from 'angular2-chartjs';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../../modules/material/material.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
 	imports: [
@@ -16,7 +16,7 @@ import { MaterialModule } from '../../modules/material/material.module';
 		SummaryRoutingModule,
 		MaterialModule,
 		FormsModule,
-		ChartModule
+		NgxChartsModule
 	],
 	declarations: [
 		SummaryComponent,
