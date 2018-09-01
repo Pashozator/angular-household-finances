@@ -1,34 +1,22 @@
 <div class="wrapper">
-	<table class="table table-bordered table-responsive">
-		<thead class="thead-default">
-		<tr>
-			<th></th>
-			<th *ngFor="let month of (year$ | async).months">
-				{{ month.label }}
-			</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<th scope="row">Przychód</th>
-			<td *ngFor="let month of (year$ | async).months">
-				{{ month.income | currencyPln }}
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">Wydatki</th>
-			<td *ngFor="let month of (year$ | async).months">
-				{{ month.outgo | currencyPln }}
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">Zaoszczędzono</th>
-			<td *ngFor="let month of (year$ | async).months">
-				{{ (month.income - month.outgo) | currencyPln }}
-			</td>
-		</tr>
-		</tbody>
-	</table>
-	<button mat-raised-button color="primary" (click)="openDialogAddIncome()">Dodaj przychód</button>
-	<button mat-raised-button color="warn" (click)="openDialogAddOutgo()">Dodaj wydatek</button>
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>
+				Sierpień 2018
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<app-operation></app-operation>
+		</mat-card-content>
+	</mat-card>
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>
+				Lipiec 2018
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<app-operation></app-operation>
+		</mat-card-content>
+	</mat-card>
 </div>

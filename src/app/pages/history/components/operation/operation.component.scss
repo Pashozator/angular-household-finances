@@ -1,0 +1,34 @@
+@import '../../../../../styles/colors';
+
+:host {
+	padding: 20px;
+	width: 100%;
+	height: 50px;
+	background: $grey;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	display: flex;
+}
+
+.label-date {
+	flex-direction: column;
+	display: flex;
+}
+
+.label {
+	font-size: 16px;
+}
+
+.date {
+	font-size: 10px;
+}
+
+.value {
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.income {
+	color: $green;
+}

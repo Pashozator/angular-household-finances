@@ -10,10 +10,13 @@ import { environment } from '../environments/environment';
 import { reducers } from './store/reducers/app.reducer';
 import { effects } from './store/effects/app.effects';
 import { DialogsModule } from './modules/dialogs/dialogs.module';
+import { MaterialModule } from './modules/material/material.module';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		TableComponent
 	],
 	imports: [
 		BrowserModule,
@@ -21,6 +24,7 @@ import { DialogsModule } from './modules/dialogs/dialogs.module';
 		SharedModule,
 		DialogsModule,
 		AppRoutingModule,
+		MaterialModule,
 		StoreModule.forRoot(reducers),
 		EffectsModule.forRoot(effects),
 		environment.devTools

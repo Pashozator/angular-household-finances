@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AuthorDialogComponent } from './modules/dialogs/components/author-dialog/author-dialog.component';
+import { Store } from '@ngrx/store';
+import { AppState } from './store/state/app.state';
 
 @Component({
 	selector: 'app-root',
@@ -11,7 +13,10 @@ export class AppComponent {
 	public title: string;
 	public year: number;
 
-	constructor(public dialog: MatDialog) {
+	constructor(
+		private dialog: MatDialog,
+		private store: Store<AppState>
+	) {
 		this.title = 'Domowe finanse';
 		this.year = new Date().getFullYear();
 	}

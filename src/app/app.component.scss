@@ -1,10 +1,9 @@
 $border-color: #9030b8;
 
 header {
-	margin: 0 0 25px 0;
 	padding: 25px 0;
 	width: 100%;
-	height: 140px;
+	//height: 140px;
 	background: #780da5;
 	color: #fff;
 
@@ -27,7 +26,7 @@ header {
 
 	.header-links {
 		padding: 25px 0;
-		height: 50px;
+		//height: 30px;
 
 		.header-links-date {
 			padding: 0 25px 0 0;
@@ -45,8 +44,7 @@ header {
 				list-style: none;
 
 				.active {
-					padding: 0 0 16px 0;
-					border-bottom: 6px solid #fff;
+					opacity: .7;
 				}
 
 				li {
@@ -55,12 +53,24 @@ header {
 
 					a {
 						&:hover {
-							padding: 0 0 16px 0;
-							border-bottom: 6px solid #fff;
+							opacity: .7;
 						}
 					}
 				}
 			}
 		}
 	}
+}
+
+
+.actions {
+	margin: 0 0 25px 0;
+	padding: 15px 20px 15px 20px;
+	width: 100%;
+	height: 70px;
+	background: #f3f3f3;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	display: flex;
 }
