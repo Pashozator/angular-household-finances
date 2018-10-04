@@ -1,5 +1,5 @@
-import { Budget } from '../../types/budget';
+import { BudgetState } from './budget.state';
 
 export interface AppState {
-	budget: Budget;
+	budget: BudgetState;
 }

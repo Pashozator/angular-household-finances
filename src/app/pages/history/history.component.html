@@ -1,22 +1,3 @@
 <div class="wrapper">
-	<mat-card>
-		<mat-card-header>
-			<mat-card-title>
-				Sierpień 2018
-			</mat-card-title>
-		</mat-card-header>
-		<mat-card-content>
-			<app-operation></app-operation>
-		</mat-card-content>
-	</mat-card>
-	<mat-card>
-		<mat-card-header>
-			<mat-card-title>
-				Lipiec 2018
-			</mat-card-title>
-		</mat-card-header>
-		<mat-card-content>
-			<app-operation></app-operation>
-		</mat-card-content>
-	</mat-card>
+	<app-operation *ngFor="let operation of operations$ | async" [operation]="operation"></app-operation>
 </div>

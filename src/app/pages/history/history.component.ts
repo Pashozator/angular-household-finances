@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Operation } from '../../types/operation';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../store/state/app.state';
+import { selectOperations } from '../../store/selectors/app.selectors';
 
 @Component({
 	selector: 'app-history',
@@ -6,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
-	constructor() {
+	public operations$: Observable<Operation[]>;
+
+	constructor(private store: Store<AppState>) {
+		this.operations$ = store.pipe(select(selectOperations));
 	}
 
 	ngOnInit() {

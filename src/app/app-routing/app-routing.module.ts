@@ -8,10 +8,6 @@ const routes: Routes = [
 		pathMatch: 'full'
 	},
 	{
-		path: 'summary',
-		loadChildren: 'src/app/pages/summary/summary.module#SummaryModule'
-	},
-	{
 		path: 'history',
 		loadChildren: 'src/app/pages/history/history.module#HistoryModule'
 	}

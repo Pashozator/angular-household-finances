@@ -1,23 +1,24 @@
 import { ActionWithPayload } from '../interfaces/action-with-payload';
+import { Operation } from '../../types/operation';
 
 export enum BudgetActionTypes {
-	ADD_INCOME = '[Budget] Add income',
-	ADD_OUTGO = '[Budget] Add outgo'
+	ADD_OPERATION = '[Budget] Add operation',
+	REMOVE_OPERATION = '[Budget] Remove operation'
 }
 
-export class AddIncomeAction implements ActionWithPayload<{ yearId: number, monthId: number, amount: number }> {
-	readonly type = BudgetActionTypes.ADD_INCOME;
+export class AddOperationAction implements ActionWithPayload<Operation> {
+	readonly type = BudgetActionTypes.ADD_OPERATION;
 
-	constructor(public payload: { yearId: number, monthId: number, amount: number }) {
+	constructor(public payload: Operation) {
 	}
 }
 
-export class AddOutgoAction implements ActionWithPayload<{ yearId: number, monthId: number, amount: number }> {
-	readonly type = BudgetActionTypes.ADD_OUTGO;
+export class RemoveOperationAction implements ActionWithPayload<Operation> {
+	readonly type = BudgetActionTypes.REMOVE_OPERATION;
 
-	constructor(public payload: { yearId: number, monthId: number, amount: number }) {
+	constructor(public payload: Operation) {
 	}
 }
 
-export type BudgetActions = AddIncomeAction
-	| AddOutgoAction;
+export type BudgetActions = AddOperationAction
+	| RemoveOperationAction;
