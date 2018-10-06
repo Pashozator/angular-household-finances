@@ -10,7 +10,7 @@ export function budgetReducer(state: BudgetState = initialState, action: BudgetA
 		case BudgetActionTypes.ADD_OPERATION:
 			return { ...state, operations: [action.payload, ...state.operations] };
 		case BudgetActionTypes.REMOVE_OPERATION:
-			return state;
+			return { ...state, operations: state.operations.filter(operation => operation !== action.payload) };
 		default:
 			return state;
 	}

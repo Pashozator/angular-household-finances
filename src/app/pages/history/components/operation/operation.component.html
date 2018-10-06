@@ -11,4 +11,7 @@
 </div>
 <div class="description" *ngIf="expanded">
 	<p>{{ operation.description }}</p>
+	<div class="actions">
+		<button type="button" mat-raised-button color="warn" (click)="remove()">Usuń</button>
+	</div>
 </div>
