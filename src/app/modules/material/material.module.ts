@@ -7,7 +7,7 @@ import {
 	MatCardModule,
 	MatDatepickerModule,
 	MatDialogModule,
-	MatFormFieldModule,
+	MatFormFieldModule, MatIconModule,
 	MatInputModule,
 	MatProgressBarModule,
 	MatSelectModule
@@ -36,6 +36,7 @@ export const MY_FORMATS = {
 		MatProgressBarModule,
 		MatCardModule,
 		MatDatepickerModule,
+		MatIconModule
 	],
 	exports: [
 		MatDialogModule,
@@ -46,6 +47,7 @@ export const MY_FORMATS = {
 		MatProgressBarModule,
 		MatCardModule,
 		MatDatepickerModule,
+		MatIconModule
 	],
 	providers: [
 		{ provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },

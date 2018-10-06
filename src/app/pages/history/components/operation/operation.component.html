@@ -1,3 +1,7 @@
+<div class="expander" (click)="expand()">
+	<mat-icon *ngIf="!expanded">keyboard_arrow_down</mat-icon>
+	<mat-icon *ngIf="expanded">keyboard_arrow_up</mat-icon>
+</div>
 <div class="content">
 	<div class="label-date">
 		<span class="date">{{ operation.date }}</span>
