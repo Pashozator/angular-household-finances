@@ -1,0 +1,19 @@
+:host {
+	min-width: 450px;
+	display: block;
+}
+
+mat-form-field {
+	width: 100%;
+}
+
+mat-dialog-content {
+	flex-direction: column;
+	display: flex;
+}
+
+mat-dialog-actions {
+	justify-content: flex-end;
+	flex-direction: row;
+	display: flex;
+}

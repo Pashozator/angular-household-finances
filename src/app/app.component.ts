@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { AuthorDialogComponent } from './modules/dialogs/components/author-dialog/author-dialog.component';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/state/app.state';
+import { AddOperationDialogComponent } from './modules/dialogs/components/add-operation-dialog/add-operation-dialog.component';
 
 @Component({
 	selector: 'app-root',
@@ -23,5 +24,9 @@ export class AppComponent {
 
 	public openDialogAuthor(): void {
 		this.dialog.open(AuthorDialogComponent);
+	}
+
+	public addOperation(): void {
+		this.dialog.open(AddOperationDialogComponent);
 	}
 }

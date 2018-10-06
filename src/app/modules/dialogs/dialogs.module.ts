@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthorDialogComponent } from './components/author-dialog/author-dialog.component';
+import { AddOperationDialogComponent } from './components/add-operation-dialog/add-operation-dialog.component';
 
 @NgModule({
 	imports: [
@@ -11,13 +12,16 @@ import { AuthorDialogComponent } from './components/author-dialog/author-dialog.
 		ReactiveFormsModule
 	],
 	declarations: [
-		AuthorDialogComponent
+		AuthorDialogComponent,
+		AddOperationDialogComponent
 	],
 	entryComponents: [
-		AuthorDialogComponent
+		AuthorDialogComponent,
+		AddOperationDialogComponent
 	],
 	exports: [
-		AuthorDialogComponent
+		AuthorDialogComponent,
+		AddOperationDialogComponent
 	]
 })
 export class DialogsModule {
