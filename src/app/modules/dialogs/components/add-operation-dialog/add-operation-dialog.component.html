@@ -16,6 +16,9 @@
 			<input matInput type="number" placeholder="Kwota" formControlName="value" required>
 			<mat-error *ngIf="form.get('value').hasError('required')">Pole wymagane</mat-error>
 		</mat-form-field>
+		<mat-form-field>
+			<textarea matInput formControlName="description" placeholder="Opis"></textarea>
+		</mat-form-field>
 	</mat-dialog-content>
 
 	<mat-dialog-actions>

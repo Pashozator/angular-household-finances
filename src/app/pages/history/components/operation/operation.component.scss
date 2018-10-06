@@ -3,8 +3,18 @@
 :host {
 	padding: 20px;
 	width: 100%;
-	height: 50px;
+	min-height: 50px;
 	background: $grey;
+	flex-direction: column;
+	display: flex;
+
+	&:hover {
+		cursor: pointer;
+		background: rgba(0, 0, 0, .1);
+	}
+}
+
+.content {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
@@ -27,4 +37,9 @@
 .value {
 	font-size: 13px;
 	font-weight: 600;
+}
+
+p {
+	margin-bottom: 0;
+	line-height: 1.6;
 }

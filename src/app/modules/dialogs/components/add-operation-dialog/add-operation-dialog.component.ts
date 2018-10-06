@@ -30,7 +30,8 @@ export class AddOperationDialogComponent implements OnInit {
 		this.store.dispatch(new AddOperationAction({
 			label: this.form.get(`label`).value,
 			date: moment(this.form.get(`date`).value).format(`YYYY-MM-DD`),
-			value: this.form.get(`value`).value
+			value: this.form.get(`value`).value,
+			description: this.form.get(`description`).value
 		}));
 	}
 
@@ -38,7 +39,8 @@ export class AddOperationDialogComponent implements OnInit {
 		return this.fb.group({
 			label: ['', Validators.required],
 			date: ['', Validators.required],
-			value: [null, Validators.required]
+			value: [null, Validators.required],
+			description: ''
 		});
 	}
 }

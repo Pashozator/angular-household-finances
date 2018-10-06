@@ -1,5 +1,10 @@
-<div class="label-date">
-	<span class="date">{{ operation.date }}</span>
-	<span class="label">{{ operation.label }}</span>
+<div class="content">
+	<div class="label-date">
+		<span class="date">{{ operation.date }}</span>
+		<span class="label">{{ operation.label }}</span>
+	</div>
+	<span class="value">{{ operation.value }}</span>
 </div>
-<span class="value">{{ operation.value }}</span>
+<div class="description" *ngIf="expanded">
+	<p>{{ operation.description }}</p>
+</div>

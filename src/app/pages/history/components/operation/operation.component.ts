@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Operation } from '../../../../types/operation';
 
 @Component({
@@ -8,11 +8,18 @@ import { Operation } from '../../../../types/operation';
 })
 export class OperationComponent implements OnInit {
 	@Input() operation: Operation;
+	public expanded: boolean;
 
 	constructor() {
 		this.operation = new Operation();
+		this.expanded = false;
 	}
 
 	ngOnInit() {
+	}
+
+	@HostListener('click')
+	public onClick() {
+		this.expanded = !this.expanded;
 	}
 }
