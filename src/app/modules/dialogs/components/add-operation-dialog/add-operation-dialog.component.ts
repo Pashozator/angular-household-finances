@@ -28,11 +28,22 @@ export class AddOperationDialogComponent implements OnInit {
 	public submit(): void {
 		this.dialogRef.close();
 		this.store.dispatch(new AddOperationAction({
+			id: this.guid(),
 			label: this.form.get(`label`).value,
 			date: moment(this.form.get(`date`).value).format(`YYYY-MM-DD`),
 			value: this.form.get(`value`).value,
 			description: this.form.get(`description`).value
 		}));
+	}
+
+	private guid() {
+		function s4() {
+			return Math.floor((1 + Math.random()) * 0x10000)
+				.toString(16)
+				.substring(1);
+		}
+
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 	}
 
 	private prepareForm(): FormGroup {

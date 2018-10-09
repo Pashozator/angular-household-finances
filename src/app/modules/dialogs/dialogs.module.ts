@@ -4,6 +4,7 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthorDialogComponent } from './components/author-dialog/author-dialog.component';
 import { AddOperationDialogComponent } from './components/add-operation-dialog/add-operation-dialog.component';
+import { EditOperationDialogComponent } from './components/edit-operation-dialog/edit-operation-dialog.component';
 
 @NgModule({
 	imports: [
@@ -13,15 +14,18 @@ import { AddOperationDialogComponent } from './components/add-operation-dialog/a
 	],
 	declarations: [
 		AuthorDialogComponent,
-		AddOperationDialogComponent
+		AddOperationDialogComponent,
+		EditOperationDialogComponent
 	],
 	entryComponents: [
 		AuthorDialogComponent,
-		AddOperationDialogComponent
+		AddOperationDialogComponent,
+		EditOperationDialogComponent
 	],
 	exports: [
 		AuthorDialogComponent,
-		AddOperationDialogComponent
+		AddOperationDialogComponent,
+		EditOperationDialogComponent
 	]
 })
 export class DialogsModule {
