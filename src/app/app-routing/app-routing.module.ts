@@ -10,6 +10,10 @@ const routes: Routes = [
 	{
 		path: 'history',
 		loadChildren: 'src/app/pages/history/history.module#HistoryModule'
+	},
+	{
+		path: 'goals',
+		loadChildren: 'src/app/pages/goals/goals.module#GoalsModule'
 	}
 ];
 
