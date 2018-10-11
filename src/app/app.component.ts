@@ -29,4 +29,8 @@ export class AppComponent {
 	public addOperation(): void {
 		this.dialog.open(AddOperationDialogComponent);
 	}
+
+	public addGoal(): void {
+
+	}
 }

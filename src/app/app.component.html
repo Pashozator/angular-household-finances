@@ -17,7 +17,11 @@
 		</div>
 	</div>
 </header>
-<div class="actions">
-	<button type="button" mat-button (click)="addOperation()">Dodaj operacje</button>
-</div>
+<button type="button" mat-fab color="primary" [matMenuTriggerFor]="appMenu">
+	<mat-icon>add</mat-icon>
+</button>
+<mat-menu #appMenu="matMenu">
+	<button mat-menu-item (click)="addOperation()">Dodaj operację</button>
+	<button mat-menu-item (click)="addGoal()">Dodaj cel</button>
+</mat-menu>
 <router-outlet></router-outlet>

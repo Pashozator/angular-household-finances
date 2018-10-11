@@ -8,7 +8,7 @@ import {
 	MatDatepickerModule,
 	MatDialogModule,
 	MatFormFieldModule, MatIconModule,
-	MatInputModule,
+	MatInputModule, MatMenuModule,
 	MatProgressBarModule,
 	MatSelectModule
 } from '@angular/material';
@@ -36,7 +36,8 @@ export const MY_FORMATS = {
 		MatProgressBarModule,
 		MatCardModule,
 		MatDatepickerModule,
-		MatIconModule
+		MatIconModule,
+		MatMenuModule
 	],
 	exports: [
 		MatDialogModule,
@@ -47,7 +48,8 @@ export const MY_FORMATS = {
 		MatProgressBarModule,
 		MatCardModule,
 		MatDatepickerModule,
-		MatIconModule
+		MatIconModule,
+		MatMenuModule
 	],
 	providers: [
 		{ provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
