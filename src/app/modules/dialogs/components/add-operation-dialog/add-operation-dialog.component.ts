@@ -49,7 +49,7 @@ export class AddOperationDialogComponent implements OnInit {
 	private prepareForm(): FormGroup {
 		return this.fb.group({
 			label: ['', Validators.required],
-			date: ['', Validators.required],
+			date: [moment().format(`YYYY-MM-DD`), Validators.required],
 			value: [null, Validators.required],
 			description: ''
 		});
