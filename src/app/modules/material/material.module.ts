@@ -7,8 +7,10 @@ import {
 	MatCardModule,
 	MatDatepickerModule,
 	MatDialogModule,
-	MatFormFieldModule, MatIconModule,
-	MatInputModule, MatMenuModule,
+	MatFormFieldModule,
+	MatIconModule,
+	MatInputModule,
+	MatMenuModule,
 	MatProgressBarModule,
 	MatSelectModule
 } from '@angular/material';
