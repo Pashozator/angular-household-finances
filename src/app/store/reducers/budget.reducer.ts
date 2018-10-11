@@ -26,7 +26,7 @@ export function budgetReducer(state: BudgetState = initialState, action: BudgetA
 		case BudgetActionTypes.REMOVE_OPERATION:
 			return {
 				...state,
-				operations: state.operations.filter(operation => operation !== action.payload),
+				operations: state.operations.filter(operation => operation.id !== action.payload.id),
 				debit: state.debit - action.payload.value
 			};
 		default:
