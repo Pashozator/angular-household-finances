@@ -11,4 +11,8 @@
 		</div>
 		<mat-progress-bar mode="determinate" [value]="getPercentage()"></mat-progress-bar>
 	</mat-card-content>
+	<mat-card-actions>
+		<button mat-button type="button" color="warn" (click)="remove()">Usuń</button>
+		<button mat-button type="button">Edytuj</button>
+	</mat-card-actions>
 </mat-card>
