@@ -4,6 +4,7 @@ import { AuthorDialogComponent } from './modules/dialogs/components/author-dialo
 import { Store } from '@ngrx/store';
 import { AppState } from './store/state/app.state';
 import { AddOperationDialogComponent } from './modules/dialogs/components/add-operation-dialog/add-operation-dialog.component';
+import { AddGoalDialogComponent } from './modules/dialogs/components/add-goal-dialog/add-goal-dialog.component';
 
 @Component({
 	selector: 'app-root',
@@ -31,6 +32,6 @@ export class AppComponent {
 	}
 
 	public addGoal(): void {
-
+		this.dialog.open(AddGoalDialogComponent);
 	}
 }

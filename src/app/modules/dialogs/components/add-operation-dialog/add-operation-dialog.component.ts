@@ -5,6 +5,7 @@ import { AppState } from '../../../../store/state/app.state';
 import { AddOperationAction } from '../../../../store/actions/budget.actions';
 import { MatDialogRef } from '@angular/material';
 import { guid } from '../../../shared/utils/guid-util';
+import { Operation } from '../../../../types/operation';
 import * as moment from 'moment';
 
 @Component({
@@ -28,13 +29,13 @@ export class AddOperationDialogComponent implements OnInit {
 
 	public submit(): void {
 		this.dialogRef.close();
-		this.store.dispatch(new AddOperationAction({
-			id: guid(),
-			label: this.form.get(`label`).value,
-			date: moment(this.form.get(`date`).value).format(`YYYY-MM-DD`),
-			value: this.form.get(`value`).value,
-			description: this.form.get(`description`).value
-		}));
+		this.store.dispatch(new AddOperationAction(new Operation(
+			guid(),
+			this.form.get(`label`).value,
+			moment(this.form.get(`date`).value).format(`YYYY-MM-DD`),
+			this.form.get(`value`).value,
+			this.form.get(`description`).value
+		)));
 	}
 
 	private prepareForm(): FormGroup {

@@ -5,27 +5,31 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthorDialogComponent } from './components/author-dialog/author-dialog.component';
 import { AddOperationDialogComponent } from './components/add-operation-dialog/add-operation-dialog.component';
 import { EditOperationDialogComponent } from './components/edit-operation-dialog/edit-operation-dialog.component';
+import { AddGoalDialogComponent } from './components/add-goal-dialog/add-goal-dialog.component';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		MaterialModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
 	],
 	declarations: [
 		AuthorDialogComponent,
 		AddOperationDialogComponent,
-		EditOperationDialogComponent
+		EditOperationDialogComponent,
+		AddGoalDialogComponent,
 	],
 	entryComponents: [
 		AuthorDialogComponent,
 		AddOperationDialogComponent,
-		EditOperationDialogComponent
+		EditOperationDialogComponent,
+		AddGoalDialogComponent,
 	],
 	exports: [
 		AuthorDialogComponent,
 		AddOperationDialogComponent,
-		EditOperationDialogComponent
+		EditOperationDialogComponent,
+		AddGoalDialogComponent,
 	]
 })
 export class DialogsModule {
