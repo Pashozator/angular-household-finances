@@ -1,7 +1,7 @@
 import { Goal } from '../../types/goal';
 import { GoalsActions, GoalsActionTypes } from '../actions/goals.actions';
 
-const initialState: Goal[] = [new Goal('1', 'iMac', 'sfd', 8000)];
+const initialState: Goal[] = [];
 
 export function goalsReducer(state: Goal[] = initialState, action: GoalsActions): Goal[] {
 	switch (action.type) {
