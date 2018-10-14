@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Operation } from '../../../../types/operation';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/state/app.state';
@@ -9,7 +9,8 @@ import { EditOperationDialogComponent } from '../../../../modules/dialogs/compon
 @Component({
 	selector: 'app-operation',
 	templateUrl: './operation.component.html',
-	styleUrls: ['./operation.component.scss']
+	styleUrls: ['./operation.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OperationComponent implements OnInit {
 	@Input() operation: Operation;
