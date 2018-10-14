@@ -11,7 +11,7 @@
 		<mat-divider [inset]="true" *ngIf="!goal.realized"></mat-divider>
 		<div class="numbers" *ngIf="!goal.realized">
 			<span>Cel {{ goal.value }}</span>
-			<span>Do osiągnięcia pozostało {{ goal.value - debit }}</span>
+			<span>Do osiągnięcia pozostało {{ goal.value - debit >= 0 ? goal.value - debit : 0 }}</span>
 		</div>
 		<mat-progress-bar *ngIf="!goal.realized" mode="determinate" [value]="getPercentage()"></mat-progress-bar>
 	</mat-card-content>
@@ -20,7 +20,7 @@
 				[disabled]="goal.value > debit || goal.realized">
 			Realizuj
 		</button>
-		<button mat-button type="button" [disabled]="goal.realized">Edytuj</button>
+		<button mat-button type="button" (click)="edit()" [disabled]="goal.realized">Edytuj</button>
 		<button mat-button type="button" color="warn" (click)="remove()" [disabled]="goal.realized">Usuń</button>
 	</mat-card-actions>
 </mat-card>
