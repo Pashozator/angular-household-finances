@@ -11,12 +11,10 @@ import { FormsModule } from '@angular/forms';
 		MaterialModule
 	],
 	declarations: [
-		CurrencyPlnPipe,
-	],
-	entryComponents: [
+		CurrencyPlnPipe
 	],
 	exports: [
-		CurrencyPlnPipe,
+		CurrencyPlnPipe
 	]
 })
 export class SharedModule {

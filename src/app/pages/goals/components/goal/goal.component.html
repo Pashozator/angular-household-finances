@@ -1,0 +1,14 @@
+<mat-card>
+	<mat-card-title>
+		<h3>{{ goal.label }}</h3>
+	</mat-card-title>
+	<mat-card-content>
+		<p>{{ goal.description }}</p>
+		<mat-divider [inset]="true"></mat-divider>
+		<div class="numbers">
+			<span>Cel {{ goal.value }}</span>
+			<span>Do osiągnięcia pozostało {{ goal.value - debit }}</span>
+		</div>
+		<mat-progress-bar mode="determinate" [value]="getPercentage()"></mat-progress-bar>
+	</mat-card-content>
+</mat-card>
