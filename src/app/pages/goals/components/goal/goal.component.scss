@@ -16,3 +16,25 @@ h3 {
 	flex-direction: row;
 	display: flex;
 }
+
+.realized {
+	opacity: .6;
+}
+
+mat-card-title {
+	align-items: center;
+	align-content: center;
+	justify-content: flex-start;
+	flex-direction: row;
+	display: flex;
+
+	mat-icon {
+		margin: 0 5px 0 0;
+	}
+}
+
+mat-card-subtitle {
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+}

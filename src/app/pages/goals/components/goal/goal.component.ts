@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { Goal } from '../../../../types/goal';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/state/app.state';
-import { RemoveGoalAction } from '../../../../store/actions/goals.actions';
+import { RealizeGoalAction, RemoveGoalAction } from '../../../../store/actions/goals.actions';
 
 @Component({
 	selector: 'app-goal',
@@ -24,6 +24,10 @@ export class GoalComponent implements OnInit {
 
 	public getPercentage(): number {
 		return 100 - (this.goal.value - this.debit) / this.goal.value * 100;
+	}
+
+	public realize(): void {
+		this.store.dispatch(new RealizeGoalAction(this.goal));
 	}
 
 	public remove(): void {

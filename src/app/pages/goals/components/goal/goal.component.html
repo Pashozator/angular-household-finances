@@ -1,18 +1,26 @@
-<mat-card>
+<mat-card [class.realized]="goal.realized">
 	<mat-card-title>
+		<mat-icon *ngIf="goal.realized">check_circle</mat-icon>
 		<h3>{{ goal.label }}</h3>
 	</mat-card-title>
+	<mat-card-subtitle *ngIf="goal.realized">
+		Cel zrealizowany
+	</mat-card-subtitle>
 	<mat-card-content>
 		<p>{{ goal.description }}</p>
-		<mat-divider [inset]="true"></mat-divider>
-		<div class="numbers">
+		<mat-divider [inset]="true" *ngIf="!goal.realized"></mat-divider>
+		<div class="numbers" *ngIf="!goal.realized">
 			<span>Cel {{ goal.value }}</span>
 			<span>Do osiągnięcia pozostało {{ goal.value - debit }}</span>
 		</div>
-		<mat-progress-bar mode="determinate" [value]="getPercentage()"></mat-progress-bar>
+		<mat-progress-bar *ngIf="!goal.realized" mode="determinate" [value]="getPercentage()"></mat-progress-bar>
 	</mat-card-content>
-	<mat-card-actions>
-		<button mat-button type="button" color="warn" (click)="remove()">Usuń</button>
-		<button mat-button type="button">Edytuj</button>
+	<mat-card-actions *ngIf="!goal.realized">
+		<button mat-button type="button" color="primary" (click)="realize()"
+				[disabled]="goal.value > debit || goal.realized">
+			Realizuj
+		</button>
+		<button mat-button type="button" [disabled]="goal.realized">Edytuj</button>
+		<button mat-button type="button" color="warn" (click)="remove()" [disabled]="goal.realized">Usuń</button>
 	</mat-card-actions>
 </mat-card>
