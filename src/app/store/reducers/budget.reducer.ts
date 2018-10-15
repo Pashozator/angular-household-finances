@@ -44,7 +44,7 @@ export function budgetReducer(state: BudgetState = initialState, action: BudgetA
 				action.payload.description
 			);
 
-			return { ...state, operations:  [operation, ...state.operations], debit: state.debit - action.payload.value };
+			return { ...state, operations: [operation, ...state.operations], debit: state.debit - action.payload.value };
 		}
 		default:
 			return state;
