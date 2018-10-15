@@ -1,0 +1,4 @@
+<div class="wrapper">
+	<h3>Aktualny stan budżetu: {{ debit$ | async }}</h3>
+	<app-operation *ngFor="let operation of operations$ | async" [operation]="operation"></app-operation>
+</div>

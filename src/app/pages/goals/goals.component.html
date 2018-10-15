@@ -1,0 +1,3 @@
+<div class="wrapper">
+	<app-goal *ngFor="let goal of (goals$ | async)" [goal]="goal" [debit]="debit$ | async"></app-goal>
+</div>

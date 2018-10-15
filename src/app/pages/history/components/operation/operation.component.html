@@ -1,0 +1,18 @@
+<mat-card>
+	<mat-card-content>
+		<div class="content">
+			<div class="label-date">
+				<span class="date">{{ operation.date }}</span>
+				<span class="label">{{ operation.label }}</span>
+			</div>
+			<span class="value">{{ operation.value }}</span>
+		</div>
+		<div class="description">
+			<p>{{ operation.description }}</p>
+		</div>
+	</mat-card-content>
+	<mat-card-actions>
+		<button type="button" mat-button color="warn" (click)="remove()">Usuń</button>
+		<button type="button" mat-button (click)="edit()">Edytuj</button>
+	</mat-card-actions>
+</mat-card>
