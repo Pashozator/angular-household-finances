@@ -5,6 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../store/state/app.state';
 import { selectDebit, selectOperations } from '../../store/selectors/app.selectors';
 import { map } from 'rxjs/operators';
+import { GetBudgetAction } from '../../store/actions/budget.actions';
 
 @Component({
 	selector: 'app-history',
@@ -25,5 +26,6 @@ export class HistoryComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.store.dispatch(new GetBudgetAction());
 	}
 }

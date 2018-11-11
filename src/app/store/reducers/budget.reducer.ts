@@ -11,10 +11,28 @@ const initialState: BudgetState = {
 
 export function budgetReducer(state: BudgetState = initialState, action: BudgetActions): BudgetState {
 	switch (action.type) {
+		case BudgetActionTypes.GET_BUDGET: {
+			return state;
+		}
+		case BudgetActionTypes.GET_BUDGET_SUCCESS: {
+			return action.payload;
+		}
+		case BudgetActionTypes.GET_BUDGET_FAILURE: {
+			return state;
+		}
 		case BudgetActionTypes.ADD_OPERATION: {
+			return state;
+		}
+		case BudgetActionTypes.ADD_OPERATION_SUCCESS: {
 			return { ...state, operations: [action.payload, ...state.operations], debit: state.debit + action.payload.value };
 		}
+		case BudgetActionTypes.ADD_OPERATION_FAILURE: {
+			return state;
+		}
 		case BudgetActionTypes.EDIT_OPERATION: {
+			return state;
+		}
+		case BudgetActionTypes.EDIT_OPERATION_SUCCESS: {
 			const operations = state.operations,
 				index = operations.findIndex(operation => operation.id === action.payload.id);
 
@@ -28,23 +46,24 @@ export function budgetReducer(state: BudgetState = initialState, action: BudgetA
 
 			return { ...state, operations: operations, debit: debit };
 		}
+		case BudgetActionTypes.EDIT_OPERATION_FAILURE: {
+			return state;
+		}
 		case BudgetActionTypes.REMOVE_OPERATION: {
+			return state;
+		}
+		case BudgetActionTypes.REMOVE_OPERATION_SUCCESS: {
 			return {
 				...state,
 				operations: state.operations.filter(operation => operation.id !== action.payload.id),
 				debit: state.debit - action.payload.value
 			};
 		}
+		case BudgetActionTypes.REMOVE_OPERATION_FAILURE: {
+			return state;
+		}
 		case BudgetActionTypes.REDUCE_DEBIT: {
-			const operation = new Operation(
-				guid(),
-				`Realizacja celu: ${action.payload.label}`,
-				moment().format('YYYY-MM-DD'),
-				-action.payload.value,
-				action.payload.description
-			);
-
-			return { ...state, operations: [operation, ...state.operations], debit: state.debit - action.payload.value };
+			return { ...state, debit: state.debit - action.payload.value };
 		}
 		default:
 			return state;
