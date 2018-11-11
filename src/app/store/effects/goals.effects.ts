@@ -14,12 +14,13 @@ import {
 	RemoveGoalFailureAction,
 	RemoveGoalSuccessAction
 } from '../actions/goals.actions';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { ReduceDebitAction } from '../actions/budget.actions';
 import { Goal } from '../../types/goal';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { ApiService } from '../../modules/core/services/api.service';
+import { ErrorService } from '../../modules/error/services/error.service';
 
 @Injectable()
 export class GoalsEffects {
@@ -90,8 +91,22 @@ export class GoalsEffects {
 			map((action: ActionWithPayload<Goal>) => new ReduceDebitAction(action.payload))
 		);
 
+	@Effect({ dispatch: false })
+	public failure$ = this.actions$
+		.pipe(
+			ofType(
+				GoalsActionTypes.GET_GOALS_FAILURE,
+				GoalsActionTypes.ADD_GOAL_FAILURE,
+				GoalsActionTypes.EDIT_GOAL_FAILURE,
+				GoalsActionTypes.REMOVE_GOAL_FAILURE,
+				GoalsActionTypes.REALIZE_GOAL_FAILURE
+			),
+			tap(() => this.error.occurs())
+		);
+
 	constructor(
 		private actions$: Actions,
+		private error: ErrorService,
 		private api: ApiService
 	) {
 	}

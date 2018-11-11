@@ -12,6 +12,7 @@ import { effects } from './store/effects/app.effects';
 import { DialogsModule } from './modules/dialogs/dialogs.module';
 import { MaterialModule } from './modules/material/material.module';
 import { CoreModule } from './modules/core/core.module';
+import { ErrorModule } from './modules/error/error.module';
 
 @NgModule({
 	declarations: [
@@ -25,6 +26,7 @@ import { CoreModule } from './modules/core/core.module';
 		AppRoutingModule,
 		MaterialModule,
 		CoreModule,
+		ErrorModule,
 		StoreModule.forRoot(reducers),
 		EffectsModule.forRoot(effects),
 		environment.devTools

@@ -15,8 +15,9 @@ import {
 	RemoveOperationFailureAction,
 	RemoveOperationSuccessAction
 } from '../actions/budget.actions';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Operation } from '../../types/operation';
+import { ErrorService } from '../../modules/error/services/error.service';
 
 @Injectable()
 export class BudgetEffects {
@@ -67,8 +68,21 @@ export class BudgetEffects {
 				))
 		);
 
+	@Effect({ dispatch: false })
+	public failure$ = this.actions$
+		.pipe(
+			ofType(
+				BudgetActionTypes.GET_BUDGET_FAILURE,
+				BudgetActionTypes.ADD_OPERATION_FAILURE,
+				BudgetActionTypes.EDIT_OPERATION_FAILURE,
+				BudgetActionTypes.REMOVE_OPERATION_FAILURE
+			),
+			tap(() => this.error.occurs())
+		);
+
 	constructor(
 		private actions$: Actions,
+		private error: ErrorService,
 		private api: ApiService
 	) {
 	}
