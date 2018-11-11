@@ -14,12 +14,14 @@ import {
 	RemoveGoalFailureAction,
 	RemoveGoalSuccessAction
 } from '../actions/goals.actions';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { ReduceDebitAction } from '../actions/budget.actions';
 import { Goal } from '../../types/goal';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { ApiService } from '../../modules/core/services/api.service';
+import { ErrorService } from '../../modules/error/services/error.service';
+import { LoaderService } from '../../modules/loader/services/loader.service';
 
 @Injectable()
 export class GoalsEffects {
@@ -27,8 +29,10 @@ export class GoalsEffects {
 	public getGoals$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(GoalsActionTypes.GET_GOALS),
+			tap(() => this.loader.open()),
 			switchMap(() => this.api.getGoals()
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new GetGoalsSuccessAction(res.data)),
 					catchError(() => of(new GetGoalsFailureAction()))
 				)
@@ -39,8 +43,10 @@ export class GoalsEffects {
 	public addGoal$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(GoalsActionTypes.ADD_GOAL),
+			tap(() => this.loader.open()),
 			switchMap((action: ActionWithPayload<Goal>) => this.api.addGoal(action.payload)
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new AddGoalSuccessAction(res.data)),
 					catchError(() => of(new AddGoalFailureAction()))
 				)
@@ -51,8 +57,10 @@ export class GoalsEffects {
 	public editGoal$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(GoalsActionTypes.EDIT_GOAL),
+			tap(() => this.loader.open()),
 			switchMap((action: ActionWithPayload<Goal>) => this.api.editGoal(action.payload)
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new EditGoalSuccessAction(action.payload)),
 					catchError(() => of(new EditGoalFailureAction()))
 				)
@@ -63,8 +71,10 @@ export class GoalsEffects {
 	public removeGoal$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(GoalsActionTypes.REMOVE_GOAL),
+			tap(() => this.loader.open()),
 			switchMap((action: ActionWithPayload<Goal>) => this.api.removeGoal(action.payload)
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new RemoveGoalSuccessAction(action.payload)),
 					catchError(() => of(new RemoveGoalFailureAction()))
 				)
@@ -75,8 +85,10 @@ export class GoalsEffects {
 	public realizeGoal$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(GoalsActionTypes.REALIZE_GOAL),
+			tap(() => this.loader.open()),
 			switchMap((action: ActionWithPayload<Goal>) => this.api.realizeGoal(action.payload)
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new RealizeGoalSuccessAction(action.payload)),
 					catchError(() => of(new RealizeGoalFailureAction()))
 				)
@@ -90,8 +102,26 @@ export class GoalsEffects {
 			map((action: ActionWithPayload<Goal>) => new ReduceDebitAction(action.payload))
 		);
 
+	@Effect({ dispatch: false })
+	public failure$ = this.actions$
+		.pipe(
+			ofType(
+				GoalsActionTypes.GET_GOALS_FAILURE,
+				GoalsActionTypes.ADD_GOAL_FAILURE,
+				GoalsActionTypes.EDIT_GOAL_FAILURE,
+				GoalsActionTypes.REMOVE_GOAL_FAILURE,
+				GoalsActionTypes.REALIZE_GOAL_FAILURE
+			),
+			tap(() => {
+				this.loader.close();
+				this.error.occurs();
+			})
+		);
+
 	constructor(
 		private actions$: Actions,
+		private error: ErrorService,
+		private loader: LoaderService,
 		private api: ApiService
 	) {
 	}
