@@ -18,6 +18,7 @@ import {
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Operation } from '../../types/operation';
 import { ErrorService } from '../../modules/error/services/error.service';
+import { LoaderService } from '../../modules/loader/services/loader.service';
 
 @Injectable()
 export class BudgetEffects {
@@ -25,8 +26,10 @@ export class BudgetEffects {
 	public getBudget$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(BudgetActionTypes.GET_BUDGET),
+			tap(() => this.loader.open()),
 			switchMap(() => this.api.getBudget()
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new GetBudgetSuccessAction(res.data)),
 					catchError(() => of(new GetBudgetFailureAction()))
 				)
@@ -37,8 +40,10 @@ export class BudgetEffects {
 	public addOperation$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(BudgetActionTypes.ADD_OPERATION),
+			tap(() => this.loader.open()),
 			switchMap((action: ActionWithPayload<Operation>) => this.api.addOperation(action.payload)
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new AddOperationSuccessAction(res.data)),
 					catchError(() => of(new AddOperationFailureAction()))
 				)
@@ -49,8 +54,10 @@ export class BudgetEffects {
 	public editOperation$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(BudgetActionTypes.EDIT_OPERATION),
+			tap(() => this.loader.open()),
 			switchMap((action: ActionWithPayload<Operation>) => this.api.editOperation(action.payload)
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new EditOperationSuccessAction(action.payload)),
 					catchError(() => of(new EditOperationFailureAction()))
 				)
@@ -61,8 +68,10 @@ export class BudgetEffects {
 	public removeOperation$: Observable<ActionWithPayload<any> | Action> = this.actions$
 		.pipe(
 			ofType(BudgetActionTypes.REMOVE_OPERATION),
+			tap(() => this.loader.open()),
 			switchMap((action: ActionWithPayload<Operation>) => this.api.removeOperation(action.payload)
 				.pipe(
+					tap(() => this.loader.close()),
 					map(res => new RemoveOperationSuccessAction(action.payload)),
 					catchError(() => of(new RemoveOperationFailureAction()))
 				))
@@ -77,12 +86,16 @@ export class BudgetEffects {
 				BudgetActionTypes.EDIT_OPERATION_FAILURE,
 				BudgetActionTypes.REMOVE_OPERATION_FAILURE
 			),
-			tap(() => this.error.occurs())
+			tap(() => {
+				this.loader.close();
+				this.error.occurs();
+			})
 		);
 
 	constructor(
 		private actions$: Actions,
 		private error: ErrorService,
+		private loader: LoaderService,
 		private api: ApiService
 	) {
 	}
