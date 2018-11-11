@@ -4,6 +4,7 @@ import { AppState } from '../../store/state/app.state';
 import { Observable } from 'rxjs';
 import { Goal } from '../../types/goal';
 import { selectDebit, selectGoals } from '../../store/selectors/app.selectors';
+import { GetGoalsAction } from '../../store/actions/goals.actions';
 
 @Component({
 	selector: 'app-goals',
@@ -20,5 +21,6 @@ export class GoalsComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.store.dispatch(new GetGoalsAction());
 	}
 }
