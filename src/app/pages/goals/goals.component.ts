@@ -3,9 +3,9 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../store/state/app.state';
 import { Observable } from 'rxjs';
 import { Goal } from '../../types/goal';
-import { selectDebit } from '../../store/selectors/app.selectors';
 import { GetGoalsAction } from '../../store/actions/goals.actions';
 import { selectGoals } from '../../store/selectors/goals.selectors';
+import { selectDebit } from '../../store/selectors/budget.selectors';
 
 @Component({
 	selector: 'app-goals',
