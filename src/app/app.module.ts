@@ -14,6 +14,8 @@ import { MaterialModule } from './modules/material/material.module';
 import { CoreModule } from './modules/core/core.module';
 import { ErrorModule } from './modules/error/error.module';
 import { LoaderModule } from './modules/loader/loader.module';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './store/reducers/router.reducer';
 
 @NgModule({
 	declarations: [
@@ -31,9 +33,12 @@ import { LoaderModule } from './modules/loader/loader.module';
 		LoaderModule,
 		StoreModule.forRoot(reducers),
 		EffectsModule.forRoot(effects),
+		StoreRouterConnectingModule.forRoot(),
 		environment.devTools
 	],
-	providers: [],
+	providers: [
+		{ provide: RouterStateSerializer, useClass: CustomSerializer },
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule {
