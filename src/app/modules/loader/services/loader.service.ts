@@ -15,7 +15,7 @@ export class LoaderService {
 			return;
 		}
 
-		setTimeout(() => this.ref = this.dialog.open(LoaderComponent));
+		// setTimeout(() => this.ref = this.dialog.open(LoaderComponent));
 	}
 
 	public close(): void {

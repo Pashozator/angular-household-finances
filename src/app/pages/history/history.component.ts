@@ -3,9 +3,8 @@ import { Observable } from 'rxjs';
 import { Operation } from '../../types/operation';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../store/state/app.state';
-import { selectDebit, selectOperations } from '../../store/selectors/app.selectors';
-import { map } from 'rxjs/operators';
 import { GetBudgetAction } from '../../store/actions/budget.actions';
+import { selectDebit, selectOperations } from '../../store/selectors/budget.selectors';
 
 @Component({
 	selector: 'app-history',
@@ -17,11 +16,7 @@ export class HistoryComponent implements OnInit {
 	public debit$: Observable<number>;
 
 	constructor(private store: Store<AppState>) {
-		this.operations$ = store.pipe(
-			select(selectOperations),
-			map(operations => operations.sort((a, b) => a.date < b.date ? 1 : -1))
-		);
-
+		this.operations$ = store.pipe(select(selectOperations));
 		this.debit$ = store.pipe(select(selectDebit));
 	}
 

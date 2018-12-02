@@ -1,11 +1,9 @@
 import { BudgetState } from '../state/budget.state';
 import { BudgetActions, BudgetActionTypes } from '../actions/budget.actions';
-import { Operation } from '../../types/operation';
-import { guid } from '../../modules/shared/utils/guid-util';
-import * as moment from 'moment';
+import { operationAdapter } from '../adapters/operations.adapter';
 
 const initialState: BudgetState = {
-	operations: [],
+	operations: operationAdapter.getInitialState(),
 	debit: 0
 };
 
@@ -15,7 +13,11 @@ export function budgetReducer(state: BudgetState = initialState, action: BudgetA
 			return state;
 		}
 		case BudgetActionTypes.GET_BUDGET_SUCCESS: {
-			return action.payload;
+			return {
+				...state,
+				operations: operationAdapter.addAll(action.payload.operations, state.operations),
+				debit: action.payload.debit
+			};
 		}
 		case BudgetActionTypes.GET_BUDGET_FAILURE: {
 			return state;
@@ -24,7 +26,11 @@ export function budgetReducer(state: BudgetState = initialState, action: BudgetA
 			return state;
 		}
 		case BudgetActionTypes.ADD_OPERATION_SUCCESS: {
-			return { ...state, operations: [action.payload, ...state.operations], debit: state.debit + action.payload.value };
+			return {
+				...state,
+				operations: operationAdapter.addOne(action.payload, state.operations),
+				debit: state.debit + action.payload.value
+			};
 		}
 		case BudgetActionTypes.ADD_OPERATION_FAILURE: {
 			return state;
@@ -33,18 +39,11 @@ export function budgetReducer(state: BudgetState = initialState, action: BudgetA
 			return state;
 		}
 		case BudgetActionTypes.EDIT_OPERATION_SUCCESS: {
-			const operations = state.operations,
-				index = operations.findIndex(operation => operation.id === action.payload.id);
-
-			operations[index] = action.payload;
-
-			let debit = 0;
-
-			for (const operation of operations) {
-				debit += operation.value;
-			}
-
-			return { ...state, operations: operations, debit: debit };
+			return {
+				...state,
+				operations: operationAdapter.updateOne(action.payload.operation, state.operations),
+				debit: state.debit - action.payload.oldValue + action.payload.operation.changes.value
+			};
 		}
 		case BudgetActionTypes.EDIT_OPERATION_FAILURE: {
 			return state;
@@ -55,7 +54,7 @@ export function budgetReducer(state: BudgetState = initialState, action: BudgetA
 		case BudgetActionTypes.REMOVE_OPERATION_SUCCESS: {
 			return {
 				...state,
-				operations: state.operations.filter(operation => operation.id !== action.payload.id),
+				operations: operationAdapter.removeOne(action.payload.id, state.operations),
 				debit: state.debit - action.payload.value
 			};
 		}
