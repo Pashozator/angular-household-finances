@@ -11,10 +11,18 @@ export class LoaderService {
 	}
 
 	public open(): void {
-		this.ref = this.dialog.open(LoaderComponent);
+		if (this.ref) {
+			return;
+		}
+
+		setTimeout(() => this.ref = this.dialog.open(LoaderComponent));
 	}
 
 	public close(): void {
+		if (!this.ref) {
+			return;
+		}
+
 		this.ref.close();
 		this.ref = null;
 	}
