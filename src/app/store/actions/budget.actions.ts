@@ -3,6 +3,7 @@ import { Operation } from '../../types/operation';
 import { Goal } from '../../types/goal';
 import { Action } from '@ngrx/store';
 import { Budget } from '../../types/budget';
+import { Update } from '@ngrx/entity';
 
 export enum BudgetActionTypes {
 	GET_BUDGET = '[Budget] Get budget',
@@ -53,17 +54,17 @@ export class AddOperationFailureAction implements Action {
 	readonly type = BudgetActionTypes.ADD_OPERATION_FAILURE;
 }
 
-export class EditOperationAction implements ActionWithPayload<Operation> {
+export class EditOperationAction implements ActionWithPayload<{ operation: Operation, oldValue: number }> {
 	readonly type = BudgetActionTypes.EDIT_OPERATION;
 
-	constructor(public payload: Operation) {
+	constructor(public payload: { operation: Operation, oldValue: number }) {
 	}
 }
 
-export class EditOperationSuccessAction implements ActionWithPayload<Operation> {
+export class EditOperationSuccessAction implements ActionWithPayload<{ operation: Update<Operation>, oldValue: number }> {
 	readonly type = BudgetActionTypes.EDIT_OPERATION_SUCCESS;
 
-	constructor(public payload: Operation) {
+	constructor(public payload: { operation: Update<Operation>, oldValue: number }) {
 	}
 }
 

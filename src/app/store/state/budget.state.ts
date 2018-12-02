@@ -1,6 +1,6 @@
-import { Operation } from '../../types/operation';
+import { OperationsState } from './operations.state';
 
 export interface BudgetState {
-	operations: Operation[];
+	operations: OperationsState;
 	debit: number;
 }

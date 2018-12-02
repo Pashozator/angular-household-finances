@@ -55,10 +55,16 @@ export class BudgetEffects {
 		.pipe(
 			ofType(BudgetActionTypes.EDIT_OPERATION),
 			tap(() => this.loader.open()),
-			switchMap((action: ActionWithPayload<Operation>) => this.api.editOperation(action.payload)
+			switchMap((action: ActionWithPayload<{ operation: Operation, oldValue: number }>) => this.api.editOperation(action.payload.operation)
 				.pipe(
 					tap(() => this.loader.close()),
-					map(res => new EditOperationSuccessAction(action.payload)),
+					map(() => new EditOperationSuccessAction({
+						operation: {
+							id: action.payload.operation.id,
+							changes: action.payload.operation
+						},
+						oldValue: action.payload.oldValue
+					})),
 					catchError(() => of(new EditOperationFailureAction()))
 				)
 			)
@@ -72,7 +78,7 @@ export class BudgetEffects {
 			switchMap((action: ActionWithPayload<Operation>) => this.api.removeOperation(action.payload)
 				.pipe(
 					tap(() => this.loader.close()),
-					map(res => new RemoveOperationSuccessAction(action.payload)),
+					map(() => new RemoveOperationSuccessAction(action.payload)),
 					catchError(() => of(new RemoveOperationFailureAction()))
 				))
 		);

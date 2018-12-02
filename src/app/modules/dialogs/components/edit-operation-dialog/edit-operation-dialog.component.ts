@@ -30,11 +30,14 @@ export class EditOperationDialogComponent implements OnInit {
 	public submit(): void {
 		this.dialogRef.close();
 		this.store.dispatch(new EditOperationAction({
-			id: this.operation.id,
-			label: this.form.get(`label`).value,
-			date: moment(this.form.get(`date`).value).format(`YYYY-MM-DD`),
-			value: this.form.get(`value`).value,
-			description: this.form.get(`description`).value
+			operation: {
+				id: this.operation.id,
+				label: this.form.get(`label`).value,
+				date: moment(this.form.get(`date`).value).format(`YYYY-MM-DD`),
+				value: this.form.get(`value`).value,
+				description: this.form.get(`description`).value
+			},
+			oldValue: this.operation.value
 		}));
 	}
 

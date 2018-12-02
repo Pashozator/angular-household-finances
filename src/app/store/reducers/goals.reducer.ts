@@ -1,15 +1,16 @@
-import { Goal } from '../../types/goal';
 import { GoalsActions, GoalsActionTypes } from '../actions/goals.actions';
+import { GoalsState } from '../state/goals.state';
+import { goalAdapter } from '../adapters/goals.adapter';
 
-const initialState: Goal[] = [];
+export const initialState: GoalsState = goalAdapter.getInitialState();
 
-export function goalsReducer(state: Goal[] = initialState, action: GoalsActions): Goal[] {
+export function goalsReducer(state: GoalsState = initialState, action: GoalsActions): GoalsState {
 	switch (action.type) {
 		case GoalsActionTypes.GET_GOALS: {
 			return state;
 		}
 		case GoalsActionTypes.GET_GOALS_SUCCESS: {
-			return action.payload;
+			return goalAdapter.addAll(action.payload, state);
 		}
 		case GoalsActionTypes.GET_GOALS_FAILURE: {
 			return state;
@@ -18,7 +19,7 @@ export function goalsReducer(state: Goal[] = initialState, action: GoalsActions)
 			return state;
 		}
 		case GoalsActionTypes.ADD_GOAL_SUCCESS: {
-			return [action.payload, ...state];
+			return goalAdapter.addOne(action.payload, state);
 		}
 		case GoalsActionTypes.ADD_GOAL_FAILURE: {
 			return state;
@@ -27,12 +28,7 @@ export function goalsReducer(state: Goal[] = initialState, action: GoalsActions)
 			return state;
 		}
 		case GoalsActionTypes.EDIT_GOAL_SUCCESS: {
-			const goals = [...state],
-				index = goals.findIndex(goal => goal.id === action.payload.id);
-
-			goals[index] = action.payload;
-
-			return goals;
+			return goalAdapter.updateOne(action.payload, state);
 		}
 		case GoalsActionTypes.EDIT_GOAL_FAILURE: {
 			return state;
@@ -41,7 +37,7 @@ export function goalsReducer(state: Goal[] = initialState, action: GoalsActions)
 			return state;
 		}
 		case GoalsActionTypes.REMOVE_GOAL_SUCCESS: {
-			return [...state.filter(goal => goal.id !== action.payload.id)];
+			return goalAdapter.removeOne(action.payload.id, state);
 		}
 		case GoalsActionTypes.REMOVE_GOAL_FAILURE: {
 			return state;
@@ -50,12 +46,9 @@ export function goalsReducer(state: Goal[] = initialState, action: GoalsActions)
 			return state;
 		}
 		case GoalsActionTypes.REALIZE_GOAL_SUCCESS: {
-			const goals = [...state],
-				index = goals.findIndex(_goal => _goal.id === action.payload.id);
+			action.payload.changes.realized = true;
 
-			goals[index].realized = true;
-
-			return goals;
+			return goalAdapter.updateOne(action.payload, state);
 		}
 		case GoalsActionTypes.REALIZE_GOAL_FAILURE: {
 			return state;
