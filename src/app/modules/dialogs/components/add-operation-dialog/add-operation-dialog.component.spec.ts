@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { effects } from '../../../../store/effects/app.effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AddOperationDialogComponent', () => {
 	let component: AddOperationDialogComponent;
@@ -29,7 +30,8 @@ describe('AddOperationDialogComponent', () => {
 				LoaderModule,
 				StoreModule.forRoot(reducers),
 				EffectsModule.forRoot(effects),
-				ReactiveFormsModule
+				ReactiveFormsModule,
+				RouterTestingModule.withRoutes([])
 			],
 			declarations: [AddOperationDialogComponent],
 			providers: [

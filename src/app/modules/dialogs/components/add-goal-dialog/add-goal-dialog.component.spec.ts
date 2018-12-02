@@ -13,6 +13,7 @@ import { ErrorModule } from '../../../error/error.module';
 import { LoaderModule } from '../../../loader/loader.module';
 import { CoreModule } from '../../../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AddGoalDialogComponent', () => {
 	let component: AddGoalDialogComponent;
@@ -29,7 +30,8 @@ describe('AddGoalDialogComponent', () => {
 				LoaderModule,
 				StoreModule.forRoot(reducers),
 				EffectsModule.forRoot(effects),
-				ReactiveFormsModule
+				ReactiveFormsModule,
+				RouterTestingModule.withRoutes([])
 			],
 			declarations: [AddGoalDialogComponent],
 			providers: [

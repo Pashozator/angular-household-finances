@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from '../../../../store/reducers/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from '../../../../store/effects/app.effects';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('OperationComponent', () => {
 	let component: OperationComponent;
@@ -23,6 +24,7 @@ describe('OperationComponent', () => {
 				LoaderModule,
 				StoreModule.forRoot(reducers),
 				EffectsModule.forRoot(effects),
+				RouterTestingModule.withRoutes([])
 			],
 			declarations: [OperationComponent]
 		})

@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { effects } from '../../../../store/effects/app.effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EditGoalDialogComponent', () => {
 	let component: EditGoalDialogComponent;
@@ -29,7 +30,8 @@ describe('EditGoalDialogComponent', () => {
 				LoaderModule,
 				StoreModule.forRoot(reducers),
 				EffectsModule.forRoot(effects),
-				ReactiveFormsModule
+				ReactiveFormsModule,
+				RouterTestingModule.withRoutes([])
 			],
 			declarations: [EditGoalDialogComponent],
 			providers: [
