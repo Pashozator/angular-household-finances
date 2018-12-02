@@ -22,6 +22,7 @@ import { Action } from '@ngrx/store';
 import { ApiService } from '../../modules/core/services/api.service';
 import { ErrorService } from '../../modules/error/services/error.service';
 import { LoaderService } from '../../modules/loader/services/loader.service';
+import { Update } from '@ngrx/entity';
 
 @Injectable()
 export class GoalsEffects {
@@ -61,7 +62,7 @@ export class GoalsEffects {
 			switchMap((action: ActionWithPayload<Goal>) => this.api.editGoal(action.payload)
 				.pipe(
 					tap(() => this.loader.close()),
-					map(res => new EditGoalSuccessAction(action.payload)),
+					map(() => new EditGoalSuccessAction({ id: action.payload.id, changes: action.payload })),
 					catchError(() => of(new EditGoalFailureAction()))
 				)
 			)
@@ -75,7 +76,7 @@ export class GoalsEffects {
 			switchMap((action: ActionWithPayload<Goal>) => this.api.removeGoal(action.payload)
 				.pipe(
 					tap(() => this.loader.close()),
-					map(res => new RemoveGoalSuccessAction(action.payload)),
+					map(() => new RemoveGoalSuccessAction(action.payload)),
 					catchError(() => of(new RemoveGoalFailureAction()))
 				)
 			)
@@ -89,7 +90,7 @@ export class GoalsEffects {
 			switchMap((action: ActionWithPayload<Goal>) => this.api.realizeGoal(action.payload)
 				.pipe(
 					tap(() => this.loader.close()),
-					map(res => new RealizeGoalSuccessAction(action.payload)),
+					map(() => new RealizeGoalSuccessAction({ id: action.payload.id, changes: action.payload })),
 					catchError(() => of(new RealizeGoalFailureAction()))
 				)
 			)
@@ -99,7 +100,7 @@ export class GoalsEffects {
 	public realizeGoalSuccess$ = this.actions$
 		.pipe(
 			ofType(GoalsActionTypes.REALIZE_GOAL_SUCCESS),
-			map((action: ActionWithPayload<Goal>) => new ReduceDebitAction(action.payload))
+			map((action: ActionWithPayload<Update<Goal>>) => new ReduceDebitAction(<Goal>action.payload.changes))
 		);
 
 	@Effect({ dispatch: false })

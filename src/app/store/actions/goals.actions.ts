@@ -1,6 +1,7 @@
 import { ActionWithPayload } from '../interfaces/action-with-payload';
 import { Goal } from '../../types/goal';
 import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
 export enum GoalsActionTypes {
 	GET_GOALS = '[Goals] Get goals',
@@ -60,10 +61,10 @@ export class EditGoalAction implements ActionWithPayload<Goal> {
 	}
 }
 
-export class EditGoalSuccessAction implements ActionWithPayload<Goal> {
+export class EditGoalSuccessAction implements ActionWithPayload<Update<Goal>> {
 	readonly type = GoalsActionTypes.EDIT_GOAL_SUCCESS;
 
-	constructor(public payload: Goal) {
+	constructor(public payload: Update<Goal>) {
 	}
 }
 
@@ -96,10 +97,10 @@ export class RealizeGoalAction implements ActionWithPayload<Goal> {
 	}
 }
 
-export class RealizeGoalSuccessAction implements ActionWithPayload<Goal> {
+export class RealizeGoalSuccessAction implements ActionWithPayload<Update<Goal>> {
 	readonly type = GoalsActionTypes.REALIZE_GOAL_SUCCESS;
 
-	constructor(public payload: Goal) {
+	constructor(public payload: Update<Goal>) {
 	}
 }
 
